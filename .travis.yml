@@ -14,3 +14,11 @@ after_success:
   - docker build -t spacefox42/multi-nginx ./nginx
   - docker build -t spacefox42/multi-server ./server
   - docker build -t spacefox42/multi-worker ./worker
+
+  # Login to the Docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  #  Take those images and push them to Docker Hub
+  - docker push spacefox42/multi-client
+  - docker push spacefox42/multi-nginx
+  - docker push spacefox42/multi-server
+  - docker push spacefox42/multi-worker
